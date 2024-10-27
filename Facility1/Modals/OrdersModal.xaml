@@ -1,0 +1,126 @@
+﻿<Window x:Class="Facility1.Modals.OrdersModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facility1.Modals"
+        mc:Ignorable="d"
+        Height="450"
+        Width="700"
+        Background="White"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid>
+        <ScrollViewer>
+            <Grid Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="64" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="24" />
+                    <RowDefinition Height="48" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="64" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="New Order" FontSize="20" FontWeight="Medium" />
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="48*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Seller" />
+                        <ComboBox Grid.Row="1" Height="32" x:Name="cmbSeller" ItemsSource="{Binding Sellers}" DisplayMemberPath="SellerName" />
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Client" />
+                        <ComboBox Grid.Row="1" Height="32" x:Name="cmbClient" ItemsSource="{Binding Clients}" DisplayMemberPath="ClientName" />
+                    </Grid>
+                </Grid>
+
+                <Separator Grid.Row="2" />
+
+                <TextBlock Grid.Row="3" Text="Product List" FontSize="16" FontWeight="Medium" />
+
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="48*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="40*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="16*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Product" />
+                        <ComboBox Grid.Row="1" Height="32" x:Name="cmbProduct" ItemsSource="{Binding Products}" DisplayMemberPath="ProductDescription" />
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="24" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Quantity" />
+                        <TextBox Grid.Row="1" Height="32" x:Name="txtQuantity" PreviewTextInput="QuantityTextChange" />
+                    </Grid>
+
+                    <Button Grid.Column="4" Height="32" Margin="0,32,0,24" Content="Add +" Click="AddProduct" />
+                </Grid>
+
+                <DataGrid Grid.Row="5" ItemsSource="{Binding OrderProducts}" CanUserAddRows="False"
+                          CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Product" Binding="{Binding Product.ProductDescription}" Width="40*" />
+                        <DataGridTextColumn Header="Quantity" Binding="{Binding OPQuantity}" Width="20*" />
+                        <DataGridTextColumn Header="Amount" Binding="{Binding OPAmmount, StringFormat=C}" Width="25*" />
+                        <DataGridTemplateColumn Header="Actions">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Delete" Click="DeletedProduct" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="6" HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="8" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Height="32" Content="Save" Click="CreateOrder" />
+                    <Button Grid.Column="2" Height="32" Content="Cancel" Click="Cancel" />
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

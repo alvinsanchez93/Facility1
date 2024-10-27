@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="facilityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="iCity" />
+          </Key>
+          <Property Name="iCity" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CityCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CityName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="iClient" />
+          </Key>
+          <Property Name="iClient" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClientCreditLimit" Type="decimal" Precision="16" Scale="2" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="iLocation" />
+          </Key>
+          <Property Name="iLocation" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LocationNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LocationGoal" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="LocationSales" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="iCity" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="iManufacturer" />
+          </Key>
+          <Property Name="iManufacturer" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ManufacturerCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ManufacturerName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="iOrder" />
+          </Key>
+          <Property Name="iOrder" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderCreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="OrderTotal" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="iClient" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="iSeller" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderProduct">
+          <Key>
+            <PropertyRef Name="iOrder" />
+            <PropertyRef Name="iProduct" />
+          </Key>
+          <Property Name="iOrder" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="iProduct" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OPQuantity" Type="int" Nullable="false" />
+          <Property Name="OPAmmount" Type="decimal" Precision="16" Scale="2" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="iProduct" />
+          </Key>
+          <Property Name="iProduct" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductPrice" Type="decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="iManufacturer" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="iSeller" />
+          </Key>
+          <Property Name="iSeller" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SellerNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SellerName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerSurname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="SellerCreatedAt" Type="datetime" Nullable="false" />
+          <Property Name="SellerGoal" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="SellerSales" Type="decimal" Precision="16" Scale="2" />
+          <Property Name="iSellerDirector" Type="uniqueidentifier" />
+          <Property Name="iLocation" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Location_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="iCity" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="iCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="iClient" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="iClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="iSeller" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="iSeller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProduct_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="iOrder" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="iOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="iProduct" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="iProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="iManufacturer" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="iManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seller_Director">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Seller1" Type="Self.Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="iSeller" />
+            </Principal>
+            <Dependent Role="Seller1">
+              <PropertyRef Name="iSellerDirector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seller_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="iLocation" />
+            </Principal>
+            <Dependent Role="Seller">
+              <PropertyRef Name="iLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="facilityModelStoreContainer">
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Seller" Association="Self.FK_Order_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Manufacturer" Association="Self.FK_Product_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seller_Director" Association="Self.FK_Seller_Director">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Seller1" EntitySet="Seller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seller_Location" Association="Self.FK_Seller_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Seller" EntitySet="Seller" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="facilityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="iCity" />
+          </Key>
+          <Property Name="iCity" Type="Guid" Nullable="false" />
+          <Property Name="CityCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Location_City" FromRole="City" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="iClient" />
+          </Key>
+          <Property Name="iClient" Type="Guid" Nullable="false" />
+          <Property Name="ClientNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ClientCreditLimit" Type="Decimal" Precision="16" Scale="2" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Client" FromRole="Client" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="iLocation" />
+          </Key>
+          <Property Name="iLocation" Type="Guid" Nullable="false" />
+          <Property Name="LocationNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LocationGoal" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="LocationSales" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="iCity" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Location_City" FromRole="Location" ToRole="City" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK_Seller_Location" FromRole="Location" ToRole="Seller" />
+        </EntityType>
+        <EntityType Name="Manufacturer">
+          <Key>
+            <PropertyRef Name="iManufacturer" />
+          </Key>
+          <Property Name="iManufacturer" Type="Guid" Nullable="false" />
+          <Property Name="ManufacturerCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ManufacturerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="iOrder" />
+          </Key>
+          <Property Name="iOrder" Type="Guid" Nullable="false" />
+          <Property Name="OrderNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderTotal" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="iClient" Type="Guid" Nullable="false" />
+          <Property Name="iSeller" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Order_Client" FromRole="Order" ToRole="Client" />
+          <NavigationProperty Name="Seller" Relationship="Self.FK_Order_Seller" FromRole="Order" ToRole="Seller" />
+          <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Order" FromRole="Order" ToRole="OrderProduct" />
+        </EntityType>
+        <EntityType Name="OrderProduct">
+          <Key>
+            <PropertyRef Name="iOrder" />
+            <PropertyRef Name="iProduct" />
+          </Key>
+          <Property Name="iOrder" Type="Guid" Nullable="false" />
+          <Property Name="iProduct" Type="Guid" Nullable="false" />
+          <Property Name="OPQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OPAmmount" Type="Decimal" Precision="16" Scale="2" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_Order" FromRole="OrderProduct" ToRole="Order" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="iProduct" />
+          </Key>
+          <Property Name="iProduct" Type="Guid" Nullable="false" />
+          <Property Name="ProductCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="16" Scale="2" Nullable="false" />
+          <Property Name="iManufacturer" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
+          <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Product" FromRole="Product" ToRole="OrderProduct" />
+        </EntityType>
+        <EntityType Name="Seller">
+          <Key>
+            <PropertyRef Name="iSeller" />
+          </Key>
+          <Property Name="iSeller" Type="Guid" Nullable="false" />
+          <Property Name="SellerNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SellerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerSurname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SellerCreatedAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SellerGoal" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="SellerSales" Type="Decimal" Precision="16" Scale="2" />
+          <Property Name="iSellerDirector" Type="Guid" />
+          <Property Name="iLocation" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Seller_Location" FromRole="Seller" ToRole="Location" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Seller" FromRole="Seller" ToRole="Order" />
+          <NavigationProperty Name="Seller1" Relationship="Self.FK_Seller_Director" FromRole="Seller" ToRole="Seller1" />
+          <NavigationProperty Name="Seller2" Relationship="Self.FK_Seller_Director" FromRole="Seller1" ToRole="Seller" />
+        </EntityType>
+        <Association Name="FK_Location_City">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="iCity" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="iCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="iClient" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="iClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seller_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Seller" Type="Self.Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="iLocation" />
+            </Principal>
+            <Dependent Role="Seller">
+              <PropertyRef Name="iLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Manufacturer">
+          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manufacturer">
+              <PropertyRef Name="iManufacturer" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="iManufacturer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Seller">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="iSeller" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="iSeller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProduct_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="iOrder" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="iOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="iProduct" />
+            </Principal>
+            <Dependent Role="OrderProduct">
+              <PropertyRef Name="iProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Seller_Director">
+          <End Role="Seller" Type="Self.Seller" Multiplicity="0..1" />
+          <End Role="Seller1" Type="Self.Seller" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seller">
+              <PropertyRef Name="iSeller" />
+            </Principal>
+            <Dependent Role="Seller1">
+              <PropertyRef Name="iSellerDirector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="facility_2024Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Location" EntityType="Self.Location" />
+          <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <EntitySet Name="OrderProduct" EntityType="Self.OrderProduct" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Seller" EntityType="Self.Seller" />
+          <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Client" Association="Self.FK_Order_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seller_Location" Association="Self.FK_Seller_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Seller" EntitySet="Seller" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Manufacturer" Association="Self.FK_Product_Manufacturer">
+            <End Role="Manufacturer" EntitySet="Manufacturer" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Seller" Association="Self.FK_Order_Seller">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct_Order" Association="Self.FK_OrderProduct_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderProduct" EntitySet="OrderProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Seller_Director" Association="Self.FK_Seller_Director">
+            <End Role="Seller" EntitySet="Seller" />
+            <End Role="Seller1" EntitySet="Seller" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="facilityModelStoreContainer" CdmEntityContainer="facility_2024Entities">
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="facilityModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="iCity" ColumnName="iCity" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="facilityModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="iClient" ColumnName="iClient" />
+                <ScalarProperty Name="ClientNumber" ColumnName="ClientNumber" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientCreditLimit" ColumnName="ClientCreditLimit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location">
+            <EntityTypeMapping TypeName="facilityModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="iLocation" ColumnName="iLocation" />
+                <ScalarProperty Name="LocationNumber" ColumnName="LocationNumber" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocationGoal" ColumnName="LocationGoal" />
+                <ScalarProperty Name="LocationSales" ColumnName="LocationSales" />
+                <ScalarProperty Name="iCity" ColumnName="iCity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Manufacturer">
+            <EntityTypeMapping TypeName="facilityModel.Manufacturer">
+              <MappingFragment StoreEntitySet="Manufacturer">
+                <ScalarProperty Name="iManufacturer" ColumnName="iManufacturer" />
+                <ScalarProperty Name="ManufacturerCode" ColumnName="ManufacturerCode" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="facilityModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="iOrder" ColumnName="iOrder" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderCreatedAt" ColumnName="OrderCreatedAt" />
+                <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+                <ScalarProperty Name="iClient" ColumnName="iClient" />
+                <ScalarProperty Name="iSeller" ColumnName="iSeller" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderProduct">
+            <EntityTypeMapping TypeName="facilityModel.OrderProduct">
+              <MappingFragment StoreEntitySet="OrderProduct">
+                <ScalarProperty Name="iOrder" ColumnName="iOrder" />
+                <ScalarProperty Name="iProduct" ColumnName="iProduct" />
+                <ScalarProperty Name="OPQuantity" ColumnName="OPQuantity" />
+                <ScalarProperty Name="OPAmmount" ColumnName="OPAmmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="facilityModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="iProduct" ColumnName="iProduct" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="iManufacturer" ColumnName="iManufacturer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seller">
+            <EntityTypeMapping TypeName="facilityModel.Seller">
+              <MappingFragment StoreEntitySet="Seller">
+                <ScalarProperty Name="iSeller" ColumnName="iSeller" />
+                <ScalarProperty Name="SellerNumber" ColumnName="SellerNumber" />
+                <ScalarProperty Name="SellerName" ColumnName="SellerName" />
+                <ScalarProperty Name="SellerSurname" ColumnName="SellerSurname" />
+                <ScalarProperty Name="SellerCreatedAt" ColumnName="SellerCreatedAt" />
+                <ScalarProperty Name="SellerGoal" ColumnName="SellerGoal" />
+                <ScalarProperty Name="SellerSales" ColumnName="SellerSales" />
+                <ScalarProperty Name="iSellerDirector" ColumnName="iSellerDirector" />
+                <ScalarProperty Name="iLocation" ColumnName="iLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

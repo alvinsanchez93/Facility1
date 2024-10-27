@@ -1,0 +1,69 @@
+﻿<Window x:Class="Facility1.Modals.LocationsModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Facility1.Modals"
+        mc:Ignorable="d"
+        Height="600"
+        Width="450"
+        Background="White"
+        WindowStyle="None"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="24px">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="64" />
+        </Grid.RowDefinitions>
+
+        <!-- Location Name -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Location Name:" />
+            <TextBox Grid.Row="1" Height="30" x:Name="txtName" />
+        </Grid>
+
+        <!-- Location Goal -->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Location Goal:" />
+            <TextBox Grid.Row="1" Height="30" x:Name="txtGoal" PreviewTextInput="GoalTextChange" />
+        </Grid>
+
+        <!-- City Selection -->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="32" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="City" />
+            <ComboBox Grid.Row="1" Height="30" x:Name="cmbCity" ItemsSource="{Binding Cities}" DisplayMemberPath="CityName" SelectedValuePath="iCity"/>
+        </Grid>
+
+        <!-- Buttons -->
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" FontSize="16" Height="48"
+                    Content="Save" x:Name="btnSave" Click="SaveLocation" />
+            <Button Grid.Column="2" FontSize="16" Height="48"
+                    Content="Cancel" x:Name="btnCancel" Click="Cancel" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb480d15cc2e48728d26c7f5d94e00f7" Name="Diagram1">
+        <EntityTypeShape EntityType="facilityModel.City" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.Client" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.Location" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.Manufacturer" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.Order" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.OrderProduct" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.Product" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="facilityModel.Seller" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="facilityModel.FK_Location_City" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_Order_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_Seller_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_Product_Manufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_Order_Seller" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_OrderProduct_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_OrderProduct_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="facilityModel.FK_Seller_Director" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
