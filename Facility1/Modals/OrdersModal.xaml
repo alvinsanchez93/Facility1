@@ -10,7 +10,7 @@
         Background="White"
         WindowStyle="None"
         WindowStartupLocation="CenterOwner">
-
+<!--Alvin Cesar Sanchez Ochoa Alvarez-->
     <Grid>
         <ScrollViewer>
             <Grid Margin="24">
@@ -87,6 +87,7 @@
                             <RowDefinition Height="24" />
                         </Grid.RowDefinitions>
 
+                        <!--Alvin Cesar Sanchez Ochoa Alvarez-->
                         <TextBlock Grid.Row="0" FontSize="16" Foreground="DarkSlateGray" Text="Quantity" />
                         <TextBox Grid.Row="1" Height="32" x:Name="txtQuantity" PreviewTextInput="QuantityTextChange" />
                     </Grid>
@@ -109,7 +110,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-
+                <!--Alvin Cesar Sanchez Ochoa ALvarez-->
                 <Grid Grid.Row="6" HorizontalAlignment="Right">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />

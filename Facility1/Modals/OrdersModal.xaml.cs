@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+//Alvin Cesar Sanchez Ochoa Alvarez
 namespace Facility1.Modals
 {
     public partial class OrdersModal : Window
@@ -29,7 +30,7 @@ namespace Facility1.Modals
             InitializeComponent();
             DataContext = this;
         }
-
+        //Alvin Cesar Sanchez Ochoa Alvarez
         private void GetSellers() => Sellers = db.Seller.ToList();
         private void GetClients() => Clients = db.Client.ToList();
         private void GetProducts() => Products = db.Product.ToList();
@@ -57,7 +58,7 @@ namespace Facility1.Modals
             };
             OrderProducts.Add(product);
         }
-
+        //Alvin Cesar Sanchez Ochoa Alvarez
         private void DeletedProduct(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
