@@ -118,6 +118,9 @@
     <Compile Include="Modals\ProductModal.xaml.cs">
       <DependentUpon>ProductModal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\SellersModal.xaml.cs">
+      <DependentUpon>SellersModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientsView.xaml.cs">
       <DependentUpon>ClientsView.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\ProductModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\SellersModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

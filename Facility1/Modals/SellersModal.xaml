@@ -1,0 +1,73 @@
+﻿<Window x:Class="Facility1.Modals.SellerModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add/Edit Seller" Height="500" Width="400" WindowStartupLocation="CenterOwner"
+        WindowStyle="None" Background="White">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título del Modal -->
+        <TextBlock Text="Add/Edit Seller" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+        <!-- Campo de solo lectura para Seller Number -->
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Seller Number" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtSellerNumber" Width="250" Height="30" IsReadOnly="True"/>
+        </StackPanel>
+
+        <!-- Campo para el nombre del vendedor -->
+        <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Name" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtSellerName" Width="250" Height="30"/>
+        </StackPanel>
+
+        <!-- Campo para el apellido del vendedor -->
+        <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Surname" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtSellerSurname" Width="250" Height="30"/>
+        </StackPanel>
+
+        <!-- Campo de solo lectura para la fecha de creación -->
+        <StackPanel Grid.Row="4" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Created At" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtCreatedAt" Width="250" Height="30" IsReadOnly="True"/>
+        </StackPanel>
+
+        <!-- Campo para la meta de ventas del vendedor -->
+        <StackPanel Grid.Row="5" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Goal" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtSellerGoal" Width="250" Height="30" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+        </StackPanel>
+
+        <!-- Campo para las ventas actuales del vendedor -->
+        <StackPanel Grid.Row="6" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Sales" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <TextBox x:Name="txtSellerSales" Width="250" Height="30" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+        </StackPanel>
+
+        <!-- ComboBox para seleccionar la ubicación del vendedor -->
+        <StackPanel Grid.Row="7" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
+            <TextBlock Text="Location" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
+            <ComboBox x:Name="cmbLocation" Width="250" Height="30" DisplayMemberPath="LocationName"/>
+        </StackPanel>
+
+        <!-- Botones para guardar y cancelar -->
+        <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+            <Button Content="Save" Width="100" Height="30" Margin="5" Click="OnSaveClick"/>
+            <Button Content="Cancel" Width="100" Height="30" Margin="5" Click="OnCancelClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
+

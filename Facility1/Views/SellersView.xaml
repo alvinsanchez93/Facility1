@@ -3,11 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Facility1.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="White">
-    <Grid>
-        <TextBlock>Sellers</TextBlock>     
+             d:DesignHeight="500" d:DesignWidth="800">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Botón + Add Seller en la parte superior -->
+        <Button x:Name="AddSellerButton" Content="+ Add Seller" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10"
+                Click="CreateSeller" Background="#d1d8ff" Foreground="Black"/>
+
+        <!-- DataGrid para mostrar la lista de vendedores -->
+        <DataGrid x:Name="dataGridSellers" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                  CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding Sellers}" RowBackground="LightGray" AlternatingRowBackground="WhiteSmoke">
+            <DataGrid.Columns>
+                <!-- Columna para el Número del Vendedor -->
+                <DataGridTextColumn Header="Number" Binding="{Binding SellerNumber}" Width="100"/>
+
+                <!-- Columna para el Nombre del Vendedor -->
+                <DataGridTextColumn Header="Name" Binding="{Binding SellerName}" Width="150"/>
+
+                <!-- Columna para el Apellido del Vendedor -->
+                <DataGridTextColumn Header="Surname" Binding="{Binding SellerSurname}" Width="150"/>
+
+                <!-- Columna para la Fecha de Creación del Vendedor -->
+                <DataGridTextColumn Header="Created At" Binding="{Binding SellerCreatedAt, StringFormat=g}" Width="150"/>
+
+                <!-- Columna para la Meta del Vendedor -->
+                <DataGridTextColumn Header="Goal" Binding="{Binding SellerGoal, StringFormat=C}" Width="100"/>
+
+                <!-- Columna para las Ventas del Vendedor -->
+                <DataGridTextColumn Header="Sales" Binding="{Binding SellerSales, StringFormat=C}" Width="100"/>
+
+                <!-- Columna para la Ubicación del Vendedor -->
+                <DataGridTextColumn Header="Location" Binding="{Binding Location.LocationName}" Width="150"/>
+
+                <!-- Columna Botón Editar -->
+                <DataGridTemplateColumn Header="Edit" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Width="60" Margin="5,0" Click="EditSeller"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Columna Botón Eliminar -->
+                <DataGridTemplateColumn Header="Delete" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Width="60" Margin="5,0" Click="DeleteSeller"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
