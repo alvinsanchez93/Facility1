@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Título del Modal -->
+        <!-- Título del Modal Alvin Cesar Sanchez Ochoa Alvarez-->
         <TextBlock Text="Add/Edit Seller" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
         <!-- Campo de solo lectura para Seller Number -->
@@ -32,7 +32,7 @@
             <TextBox x:Name="txtSellerName" Width="250" Height="30"/>
         </StackPanel>
 
-        <!-- Campo para el apellido del vendedor -->
+        <!-- Campo para el apellido del vendedor Alvin Cesar Sanchez Ochoa Alvarez-->
         <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
             <TextBlock Text="Surname" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
             <TextBox x:Name="txtSellerSurname" Width="250" Height="30"/>
@@ -56,7 +56,7 @@
             <TextBox x:Name="txtSellerSales" Width="250" Height="30" PreviewTextInput="NumericTextBox_PreviewTextInput"/>
         </StackPanel>
 
-        <!-- ComboBox para seleccionar la ubicación del vendedor -->
+        <!-- ComboBox para seleccionar la ubicación del vendedor Alvin Cesar Sanchez Ochoa Alvarez-->
         <StackPanel Grid.Row="7" Orientation="Vertical" Margin="0,5" HorizontalAlignment="Center">
             <TextBlock Text="Location" FontWeight="Bold" Margin="0,0,0,5" HorizontalAlignment="Left"/>
             <ComboBox x:Name="cmbLocation" Width="250" Height="30" DisplayMemberPath="LocationName"/>

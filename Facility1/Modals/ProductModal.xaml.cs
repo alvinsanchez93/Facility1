@@ -22,7 +22,7 @@ namespace Facility1.Modals
             // Cargar la lista de fabricantes en el ComboBox
             cmbManufacturer.ItemsSource = db.Manufacturer.ToList();
 
-            // Si se pasa un producto existente, configurar el modal para editar
+            // Si se pasa un producto existente, configurar el modal para editar Alvin Cesar Sanchez Ochoa Alvarez
             if (existingProduct != null)
             {
                 product = existingProduct;
@@ -39,7 +39,7 @@ namespace Facility1.Modals
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
-            // Validar entrada de datos
+            // Validar entrada de datos Alvin Cesar Sanchez Ochoa Alvarez
             if (string.IsNullOrWhiteSpace(txtProductCode.Text) ||
                 string.IsNullOrWhiteSpace(txtProductDescription.Text) ||
                 string.IsNullOrWhiteSpace(txtProductPrice.Text) ||
@@ -73,7 +73,7 @@ namespace Facility1.Modals
             Close();
         }
 
-        // Método para validar solo números en el campo de precio
+        // Método para validar solo números en el campo de precio 
         private void NumericTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             e.Handled = !Regex.IsMatch(e.Text, "^[0-9]*(\\.[0-9]{0,2})?$");

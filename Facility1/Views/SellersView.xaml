@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Botón + Add Seller en la parte superior -->
+        <!-- Botón + Add Seller en la parte superior Alvin Cesar Sanchez Ochoa Alvarez-->
         <Button x:Name="AddSellerButton" Content="+ Add Seller" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10"
                 Click="CreateSeller" Background="#d1d8ff" Foreground="Black"/>
 
@@ -26,7 +26,7 @@
                 <!-- Columna para el Número del Vendedor -->
                 <DataGridTextColumn Header="Number" Binding="{Binding SellerNumber}" Width="100"/>
 
-                <!-- Columna para el Nombre del Vendedor -->
+                <!-- Columna para el Nombre del Vendedor Alvin Cesar Sanchez Ochoa Alvarez-->
                 <DataGridTextColumn Header="Name" Binding="{Binding SellerName}" Width="150"/>
 
                 <!-- Columna para el Apellido del Vendedor -->
@@ -53,7 +53,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <!-- Columna Botón Eliminar -->
+                <!-- Columna Botón Eliminar Alvin Cesar Sanchez Ochoa Alvarez-->
                 <DataGridTemplateColumn Header="Delete" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

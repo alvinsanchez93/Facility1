@@ -19,7 +19,7 @@ namespace Facility1.Modals
             Success = false;
         }
 
-        // Constructor para editar un cliente existente
+        // Constructor para editar un cliente existente Alvin Cesar Sanchez Ochoa Alvarez
         public ClientsModal(Window owner, Client clientToEdit) : this(owner)
         {
             existingClient = clientToEdit;
@@ -28,7 +28,7 @@ namespace Facility1.Modals
 
         private void LoadClientData()
         {
-            // Cargar datos del cliente en los campos de texto si es una edición
+            // Cargar datos del cliente en los campos de texto si es una edición Alvin Cesar Sanchez Ochoa Alvarez
             if (existingClient != null)
             {
                 txtClientName.Text = existingClient.ClientName;
@@ -58,7 +58,7 @@ namespace Facility1.Modals
             }
             else
             {
-                // Actualizar el cliente existente
+                // Actualizar el cliente existente Alvin Cesar Sanchez Ochoa Alvarez
                 existingClient.ClientName = txtClientName.Text;
                 existingClient.ClientCreditLimit = creditLimit;
             }

@@ -19,7 +19,7 @@ namespace Facility1.Modals
             db = new facility_2024Entities();
             Success = false;
 
-            // Cargar la lista de ubicaciones
+            // Cargar la lista de ubicaciones Alvin Cesar Sanchez Ochoa Alvarez
             cmbLocation.ItemsSource = db.Location.ToList();
 
             // Si se está editando un vendedor existente
@@ -46,7 +46,7 @@ namespace Facility1.Modals
 
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
-            // Validar que los campos no estén vacíos
+            // Validar que los campos no estén vacíos Alvin Cesar Sanchez Ochoa Alvarez
             if (string.IsNullOrWhiteSpace(txtSellerName.Text) ||
                 string.IsNullOrWhiteSpace(txtSellerSurname.Text) ||
                 cmbLocation.SelectedItem == null)
@@ -62,7 +62,7 @@ namespace Facility1.Modals
             seller.SellerSales = string.IsNullOrWhiteSpace(txtSellerSales.Text) ? (decimal?)null : decimal.Parse(txtSellerSales.Text);
             seller.iLocation = ((Location)cmbLocation.SelectedItem).iLocation;
 
-            // Guardar o actualizar el vendedor
+            // Guardar o actualizar el vendedor Alvin Cesar Sanchez Ochoa Alvarez
             if (seller.iSeller == Guid.Empty)
             {
                 seller.iSeller = Guid.NewGuid();

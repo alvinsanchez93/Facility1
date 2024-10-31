@@ -20,7 +20,7 @@ namespace Facility1.Views
             LoadSellers();
         }
 
-        // Método para cargar la lista de vendedores desde la base de datos
+        // Método para cargar la lista de vendedores desde la base de datos Alvin Cesar Sanchez Ochoa Alvarez
         private void LoadSellers()
         {
             Sellers.Clear();
@@ -31,7 +31,7 @@ namespace Facility1.Views
             }
         }
 
-        // Método para crear un nuevo vendedor
+        // Método para crear un nuevo vendedor Alvin Cesar Sanchez Ochoa Alvarez
         private void CreateSeller(object sender, RoutedEventArgs e)
         {
             var sellerModal = new SellerModal(Window.GetWindow(this));
@@ -62,7 +62,7 @@ namespace Facility1.Views
             }
         }
 
-        // Método para eliminar un vendedor seleccionado
+        // Método para eliminar un vendedor seleccionado Alvin Cesar Sanchez Ochoa Alvarez
         private void DeleteSeller(object sender, RoutedEventArgs e)
         {
             if (dataGridSellers.SelectedItem is Seller selectedSeller)

@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
+<!--Alvin Cesar Sanchez Ochoa Alvarez!-->
         <TextBlock Text="Product" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
         <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0,5">
@@ -25,7 +25,7 @@
             <TextBlock Text="Description" FontWeight="Bold"/>
             <TextBox x:Name="txtProductDescription" Width="300" Height="30"/>
         </StackPanel>
-
+<!--Alvin Cesar Sanchez Ochoa Alvarez-->
         <StackPanel Grid.Row="3" Orientation="Vertical" Margin="0,5">
             <TextBlock Text="Price" FontWeight="Bold"/>
             <TextBox x:Name="txtProductPrice" Width="300" Height="30" PreviewTextInput="NumericTextBox_PreviewTextInput"/>

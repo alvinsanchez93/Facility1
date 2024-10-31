@@ -17,7 +17,7 @@
         <Button x:Name="AddProductButton" Content="+ Add Product" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10"
                 Click="CreateProduct" Background="#d1d8ff" Foreground="Black"/>
 
-        <!-- DataGrid para mostrar la lista de productos -->
+        <!-- DataGrid para mostrar la lista de productos Alvin Cesar Sanchez Ochoa Alvarez-->
         <DataGrid x:Name="dataGridProductos" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
                   CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -32,7 +32,7 @@
                 <!-- Columna para el Precio -->
                 <DataGridTextColumn Header="Price" Binding="{Binding ProductPrice, StringFormat=C}" Width="Auto"/>
 
-                <!-- Columna para el Fabricante -->
+                <!-- Columna para el Fabricante Alvin Cesar Sancez Ochoa Alvarez-->
                 <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer.ManufacturerName}" Width="Auto"/>
 
                 <!-- Columna Botón Editar -->
@@ -55,7 +55,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <!-- Botón + Add Manufacturer en la parte inferior -->
+        <!-- Botón + Add Manufacturer en la parte inferior Alvin Cesar Sanchez Ochoa Alvarez-->
         <Button x:Name="AddManufacturerButton" Content="+ Add Manufacturer" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10" Grid.Row="2"
                 Click="CreateManufacturer" Background="#d1d8ff" Foreground="Black"/>
     </Grid>

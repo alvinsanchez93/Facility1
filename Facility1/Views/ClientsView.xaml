@@ -16,7 +16,7 @@
         <Button Content="+ Add Client" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10"
                 Click="CreateClient"/>
 
-        <!-- DataGrid para mostrar la lista de clientes -->
+        <!-- DataGrid para mostrar la lista de clientes Alvin Cesar Sanchez Ochoa Alvrez-->
         <DataGrid x:Name="dataGridClientes" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
                   CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
                   HorizontalAlignment="Stretch" VerticalAlignment="Top"
@@ -40,7 +40,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <!-- Columna Botón Eliminar -->
+                <!-- Columna Botón Eliminar Alvin Cesar Sanchez Ochoa Avarez -->
                 <DataGridTemplateColumn Header="Delete" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- Título -->
+        <!-- Título Alvin Cesar Sanchez Ochoa Alvarez-->
         <TextBlock Grid.Row="0" Text="Client" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
         <!-- Campo para el nombre del cliente -->

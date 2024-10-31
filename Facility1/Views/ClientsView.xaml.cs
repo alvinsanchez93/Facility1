@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Facility1.DB;
 using Facility1.Modals;
-
+//Alvin Cesar Sanchez Ochoa Alvarez
 namespace Facility1.Views
 {
     public partial class ClientsView : UserControl
@@ -62,7 +62,7 @@ namespace Facility1.Views
                 MessageBox.Show("Please select a client to edit.", "Edit Client", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
+        //Alvin Cesar Sanchez Ochoa Alvarez
         private void DeleteClient(object sender, RoutedEventArgs e)
         {
             // Verificar si se seleccionó un cliente en el DataGrid
