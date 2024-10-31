@@ -3,13 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Facility1.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="White">
+             d:DesignHeight="500" d:DesignWidth="800">
 
-    <Grid>
-        <TextBlock>Products</TextBlock>
-            
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Botón + Add Product en la parte superior -->
+        <Button x:Name="AddProductButton" Content="+ Add Product" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10"
+                Click="CreateProduct" Background="#d1d8ff" Foreground="Black"/>
+
+        <!-- DataGrid para mostrar la lista de productos -->
+        <DataGrid x:Name="dataGridProductos" Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True"
+                  CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  ItemsSource="{Binding Products}" RowBackground="LightGray" AlternatingRowBackground="WhiteSmoke">
+            <DataGrid.Columns>
+                <!-- Columna para el Código del Producto -->
+                <DataGridTextColumn Header="Code" Binding="{Binding ProductCode}" Width="Auto"/>
+
+                <!-- Columna para la Descripción -->
+                <DataGridTextColumn Header="Description" Binding="{Binding ProductDescription}" Width="*" />
+
+                <!-- Columna para el Precio -->
+                <DataGridTextColumn Header="Price" Binding="{Binding ProductPrice, StringFormat=C}" Width="Auto"/>
+
+                <!-- Columna para el Fabricante -->
+                <DataGridTextColumn Header="Manufacturer" Binding="{Binding Manufacturer.ManufacturerName}" Width="Auto"/>
+
+                <!-- Columna Botón Editar -->
+                <DataGridTemplateColumn Header="Edit" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edit" Width="60" Margin="5,0" Click="EditProduct"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Columna Botón Eliminar -->
+                <DataGridTemplateColumn Header="Delete" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Width="60" Margin="5,0" Click="DeleteProduct"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- Botón + Add Manufacturer en la parte inferior -->
+        <Button x:Name="AddManufacturerButton" Content="+ Add Manufacturer" Width="150" Height="30" HorizontalAlignment="Center" Margin="0,10,0,10" Grid.Row="2"
+                Click="CreateManufacturer" Background="#d1d8ff" Foreground="Black"/>
     </Grid>
 </UserControl>

@@ -109,8 +109,14 @@
     <Compile Include="Modals\LocationsModal.xaml.cs">
       <DependentUpon>LocationsModal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\ManufacturerModal.xaml.cs">
+      <DependentUpon>ManufacturerModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\OrdersModal.xaml.cs">
       <DependentUpon>OrdersModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ProductModal.xaml.cs">
+      <DependentUpon>ProductModal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClientsView.xaml.cs">
       <DependentUpon>ClientsView.xaml</DependentUpon>
@@ -147,7 +153,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modals\ManufacturerModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\OrdersModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ProductModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
